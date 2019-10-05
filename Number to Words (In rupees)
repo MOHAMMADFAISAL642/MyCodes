@@ -1,0 +1,48 @@
+function numberToWords(number) {
+  if (isNaN(number)) return;
+  const units = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+  const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+	const indScales = ['Hundred', 'Thousand', 'Lakh', 'Crore', 'Arab'];
+	let [digits, decimal] = String(number).split('.');
+	digits = digits.split('');
+	let digLen = digits.length;
+	let numInWords = [];
+	for (let i = 0;
+	i < digits.length;
+		i++) {
+		let digit = digits[i];
+			if (digit === "0") {
+			digLen--;
+			continue;
+		
+		}
+		let isEvenPos = digLen % 2 === 0;
+		let isTens = digLen > 3 && !isEvenPos || digLen < 3 && isEvenPos;
+			if (isTens) {
+			let index = parseInt(digit + digits[i + 1]);
+			index > 19 ? numInWords.push(tens[digit]) && numInWords.push(units[digits[i + 1]])            : numInWords.push(units[index]);
+			digLen > 3 ? numInWords.push(indScales[(digLen - 3) / 2]) : "";
+			i++;
+			digLen--;
+			
+		}
+		else {
+			units[digit] && numInWords.push(units[digit]);
+			let scale = indScales[parseInt(digLen / 2) - 1];
+			scale && numInWords.push(scale);
+		
+		}
+		digLen--;
+	
+	}
+	if(!numInWords.length) numInWords.push(`Zero`);
+	numInWords.push(`Rupees`);
+	if (decimal && parseInt(decimal)) {
+		decimal = decimal > 19 ? `${tens[decimal[0]]} ${units[decimal[1]]}`          
+      : units[parseInt(decimal)];
+		decimal && numInWords.push(`& ${decimal} Paise`);
+	
+	}
+	return `${numInWords.join(" ")} Only`;
+
+};
