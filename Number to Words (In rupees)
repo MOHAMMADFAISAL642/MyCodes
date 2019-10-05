@@ -7,9 +7,7 @@ function numberToWords(number) {
 	digits = digits.split('');
 	let digLen = digits.length;
 	let numInWords = [];
-	for (let i = 0;
-	i < digits.length;
-		i++) {
+	for (let i = 0;i < digits.length;i++) {
 		let digit = digits[i];
 			if (digit === "0") {
 			digLen--;
@@ -20,7 +18,8 @@ function numberToWords(number) {
 		let isTens = digLen > 3 && !isEvenPos || digLen < 3 && isEvenPos;
 			if (isTens) {
 			let index = parseInt(digit + digits[i + 1]);
-			index > 19 ? numInWords.push(tens[digit]) && numInWords.push(units[digits[i + 1]])            : numInWords.push(units[index]);
+			index > 19 ? numInWords.push(tens[digit]) && numInWords.push(units[digits[i + 1]])            
+				: numInWords.push(units[index]);
 			digLen > 3 ? numInWords.push(indScales[(digLen - 3) / 2]) : "";
 			i++;
 			digLen--;
