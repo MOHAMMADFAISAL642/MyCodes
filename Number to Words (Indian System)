@@ -2,7 +2,7 @@ function numberToWords(number) {
   if (isNaN(number)) return;
   const units = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
   const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
-	const indScales = ['Hundred', 'Thousand', 'Lakh', 'Crore', 'Arab'];
+	const indScales = ['Hundred', 'Thousand', 'Lakh', 'Crore', 'Arab', 'Kharab', 'Neel', 'Padma', 'Shank', 'Maha-sankh'];
 	let [digits, decimal] = String(number).split('.');
 	digits = digits.split('');
 	let digLen = digits.length;
